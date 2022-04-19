@@ -1,15 +1,23 @@
 <template>
-    <div v-for="task in tasks" :key="task.id">
-        <h3 >{{task.text}}</h3>
-
-    </div>
+  <div :key="task.id" v-for="task in tasks">
+    <TaskItem 
+      @toggle-reminder="$emit('toggle-reminder', task.id)"
+      @delete-task="$emit('delete-task', task.id)"
+      :task="task"
+    />
+  </div>
 </template>
 
 <script>
+import TaskItem from './TaskItem'
 export default {
-    name: 'TasksItem',
-    props: {
-        tasks: Array,
-    }
+  name: 'TasksItem',
+  props: {
+    tasks: Array,
+  },
+  components: {
+    TaskItem,
+  },
+  emits: ['delete-task', 'toggle-reminder'],
 }
 </script>

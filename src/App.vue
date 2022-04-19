@@ -1,7 +1,10 @@
 <template>
 <div class="container">
    <HeaderItem title="Task Tracker" />
-   <TasksItem :tasks="tasks"/>
+   <TasksItem 
+   @toggle-reminder="toggleReminder"
+   @delete-task="deleteTask"
+   :tasks="tasks"/>
 </div>
  
 </template>
@@ -21,6 +24,14 @@ export default {
       tasks: []
     }
   },
+  methods: {
+  deleteTask(id) {
+    if(confirm('Are you sure?')) {
+      this.tasks = this.tasks.filter((task) => task.id 
+      !== id)
+      } 
+    },
+  },
   // lifecycle method
   created() {
     this.tasks = [
@@ -39,7 +50,7 @@ export default {
       {
         id: 3,
         text: 'Interview',
-        day: 'May 21st 2nd at 10:30am',
+        day: 'May 21st at 10:30am',
         reminder: true,
       }
     ]
@@ -47,8 +58,9 @@ export default {
 }
 </script>
 
-// Global styles
 <style>
+
+/* Global Styles */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
 * {
   box-sizing: border-box;
