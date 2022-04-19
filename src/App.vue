@@ -31,6 +31,11 @@ export default {
       !== id)
       } 
     },
+    toggleReminder(id) {
+      this.tasks = this.tasks.map((task) => task.id === id ? {...task, reminder: !task.
+      reminder } : task
+      )
+    }
   },
   // lifecycle method
   created() {
