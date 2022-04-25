@@ -1,6 +1,7 @@
 <template>
 <div class="container">
    <HeaderItem title="Task Tracker" />
+   <AddTask />
    <TasksItem 
    @toggle-reminder="toggleReminder"
    @delete-task="deleteTask"
@@ -12,12 +13,14 @@
 <script>
 import HeaderItem from './components/HeaderItem'
 import TasksItem from './components/TasksItem'
+import AddTask from './components/AddTask'
 
 export default {
   name: 'App',
   components: {
     HeaderItem,
-    TasksItem
+    TasksItem,
+    AddTask
   },
   data() {
     return {
